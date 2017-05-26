@@ -1,0 +1,65 @@
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="spt-footer.html">
+
+<dom-module id="my-view2">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 0px;
+      }
+
+      .description {
+        text-align: justify;
+        text-justify: inter-word;
+      }
+    </style>
+
+    <div class="bigcard">
+
+      <h1>Sobre o autor</h1>
+
+      <div class="description">
+        <p>
+          Meu nome é Marcio Frayze David e sou o criador do projeto <i>segunda.tech</i>.
+        </p>
+        <p>
+          Em 2005 me formei em Ciência da Computação pela PUC-SP e desde então trabalho como 
+          analista de sistemas, arquiteto de software e DevOps. Conclui mestrado em engenharia elétrica em 2009 na 
+          área de inteligência artificial pela Universidade Presbiteriana Mackenzie.
+        </p>
+        <p>
+          Desde abril de 2009 trabalho como analista de desenvolvimento de sistemas no Serviço Federal de Processamento de Dados (SERPRO) - 
+          a maior empresa pública de tecnologia da América Latina.
+        </p>
+        <p>
+          Embora tenha trabalhado apenas com desenvolvimento de softwares, sempre me interessei pela área de edução. 
+          Este projeto é uma forma de juntar duas áreas que tenho interesse: ciência da computação e educação.
+        </p>
+      </div>
+    </div>
+
+    <div class="textareabottom">
+
+      <p>
+        Curtiu os vídeos? Tem sugestões de temas? Acha que tem alguma coisa que poderia melhorar?<br />
+        Então entre em contato enviando um e-mail para <a href="mailto:marcio@segunda.tech">marcio@segunda.tech</a>.<br />
+        Se preferir use <a href="https://facebook.com/segunda.tech">nossa página no Facebook</a> ou <a href="https://twitter.com/segundatech">Twitter</a>.
+      </p>
+
+    </div>
+
+    <spt-footer></spt-footer>
+    
+  </template>
+
+  <script>
+    class MyView2 extends Polymer.Element {
+      static get is() { return 'my-view2'; }
+    }
+
+    window.customElements.define(MyView2.is, MyView2);
+  </script>
+</dom-module>
