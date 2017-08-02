@@ -1,24 +1,27 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
-<link rel="import" href="spt-footer.html">
 
 <dom-module id="my-view2">
   <template>
     <style include="shared-styles">
       :host {
         display: block;
-        padding: 0px;
-      }
 
-      .description {
-        text-align: justify;
-        text-justify: inter-word;
+        padding: 10px;
       }
     </style>
 
-    <div class="bigcard">
-
+    <div class="card">
       <h1>Sobre o autor</h1>
 
       <div class="description">
@@ -39,20 +42,9 @@
           Este projeto é uma forma de juntar duas áreas que tenho interesse: ciência da computação e educação.
         </p>
       </div>
+
+      <spt-footer></spt-footer>
     </div>
-
-    <div class="textareabottom">
-
-      <p>
-        Curtiu os vídeos? Tem sugestões de temas? Acha que tem alguma coisa que poderia melhorar?<br />
-        Então entre em contato enviando um e-mail para <a href="mailto:marcio@segunda.tech">marcio@segunda.tech</a>.<br />
-        Se preferir use <a href="https://facebook.com/segunda.tech">nossa página no Facebook</a> ou <a href="https://twitter.com/segundatech">Twitter</a>.
-      </p>
-
-    </div>
-
-    <spt-footer></spt-footer>
-    
   </template>
 
   <script>

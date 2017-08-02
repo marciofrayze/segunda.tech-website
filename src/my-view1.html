@@ -1,101 +1,55 @@
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
-<link rel="import" href="spt-footer.html" async>
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../bower_components/google-youtube/google-youtube.html" async>
+<link rel="import" href="spt-footer.html">
 
 <dom-module id="my-view1">
-
   <template>
     <style include="shared-styles">
       :host {
         display: block;
-        padding: 0px;
+
+        padding: 10px;
       }
 
-      .containersmallcard {
-        padding-left: 2%;
-        padding-right: 2%;
+      .videos img {
+        max-width: 220px;
+        padding-top: 15px;
+        text-align: center;
       }
 
-      .google-youtube {
-        width:100%; 
+      .videos {
+        text-align: center;
       }
 
-      @media screen and (min-width: 1024px) {
-        .containersmallcard {
-            @apply(--layout-horizontal);
-        }
-        .smallcard {
-          @apply(--layout-flex-2);
-        }
-      }
     </style>
 
-    <style include="iron-flex"></style>
-
-    <div class="textareatop">
-
-      <p>
-        <i>segunda.tech</i> tem como objetivo produzir vídeos de qualidade para o <i>YouTube</i>, explicando de forma simples e clara os conceitos mais importantes da área de Desenvolvimento de Software e Ciência da Computação em geral..
-      </p>
-
-    </div>
- 
     <div class="card">
-        <google-youtube
-          video-id="MFJut9t5ZLw"
-          width="100%">
-        </google-youtube>
-        <div>
-          <p>
-            #0 Apresentação do canal
-          </p>
-        </div>        
-    </div>
-
-    <div class="containersmallcard">
-
-      <div class="smallcard flexchild">
-        <google-youtube
-          video-id="MFJut9t5ZLw"
-          width="100%">
-        </google-youtube>
-        <div>
-          <p>
-            #1 Programação Orientada a Objetos
-            <br />
-            Paradigmas de Programação (ep. piloto).
-          </p>
-        </div>
-      </div>
-      <div class="smallcard flexchild">
-        <google-youtube
-          video-id="MFJut9t5ZLw"
-          width="100%">
-        </google-youtube>        
-        <div>
-          <p>
-            #2 Programação Orientada a Objetos
-            <br />
-            História.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="textareabottom">
-
       <p>
-        Curtiu os vídeos? Tem sugestões de temas? Acha que tem alguma coisa que poderia melhorar?<br />
-        Então entre em contato enviando um e-mail para <a href="mailto:marcio@segunda.tech">marcio@segunda.tech</a>.<br />
-        Se preferir use <a href="https://facebook.com/segunda.tech">nossa página no Facebook</a> ou <a href="https://twitter.com/segundatech">Twitter</a>.
+        <i>segunda.tech</i> tem como objetivo produzir vídeos explicando de forma simples e clara os conceitos mais importantes da área de desenvolvimento de software e ciência da computação em geral.
+      </p>     
+    </div>
+
+    <div class="card videos">
+      <p>
+        <img src="images/riot-logo.png" id="riot-logo" height=""/>
+        <br />
+        #1 Conhecendo o Riot.js
+        <p>        
+          Neste vídeo apresento a biblioteca <i>RIOT.js</i>, uma simples e elegante biblioteca JavaScript para construção de interfaces web.
+        </p>
+      </p>     
+    </div>
+
+    <div class="card">
+      <p>
+        Curtiu os vídeos? Tem sugestões para temas ou melhorias?<br />
+        Entre em contato enviando um e-mail para <a href="mailto:marcio@segunda.tech">marcio@segunda.tech</a>.<br />
+        Se preferir use <a href="https://facebook.com/segunda.tech">nossa página no Facebook</a> ou o <a href="https://twitter.com/segundatech">Twitter</a>.
       </p>
 
+      <spt-footer></spt-footer>
     </div>
-
-    <spt-footer></spt-footer>
 
   </template>
 
@@ -105,18 +59,5 @@
     }
 
     window.customElements.define(MyView1.is, MyView1);
-
-    var frames = document.getElementsByTagName("iframe");
-    for (var i = 0; i < frames.length; i++) {
-      src = frames[i].src;
-      if (src.indexOf('embed') != -1) {
-        if (src.indexOf('?') != -1) {
-          frames[i].src += "&wmode=transparent";
-        } else {
-            frames[i].src += "?wmode=transparent";
-        }
-      }
-    }
-
   </script>
 </dom-module>

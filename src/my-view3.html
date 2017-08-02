@@ -1,0 +1,50 @@
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-view3">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+
+    </style>
+
+    <div class="card">
+      <h1>Outros projetos</h1>
+      <p>Além do <i>segunda.tech</i>, desenvolvi ou ajudei a desenvolver mais alguns outros projetos. Abaixo listo alguns deles.</p>
+    </div>
+
+    <div class="card">
+      <h1>Quentinha Amiga</h1>
+      <p>Um mapa solidário colaborativo. Procuramos outros destinos para a comida que ia ficar no prato.</p>
+      <p><a href="https://quentinhaamiga.com.br">https://quentinhaamiga.com.br</a></p>
+      <br />
+      <h1>EduEditor</h1>
+      <p>O EduEditor (<i>The Educational Editor</i>) é um editor e intepretador on-line com suporte a Python, JavaScript e Ruby.</p>
+      <p><a href="https://edueditor.tech">https://edueditor.tech</a></p>
+      <br />
+      <h1>RackStep</h1>
+      <p>Um mini framework para desenvolvimento de aplicações web utilizando a linguagem Ruby.</p>
+      <p><a href="https://github.com/mfdavid/rackstep">https://edueditor.tech</a></p>
+      <br />
+      <h1>Ninirc</h1>
+      <p>Um chat anônimo baseado em geolocalização. Converse anonimamente com pessoas que estão próximas de você.</p>
+      <p><a href="https://ninirc.com">https://ninirc.com</a></p>
+
+      <spt-footer></spt-footer>
+    </div>
+
+  </template>
+
+  <script>
+    class MyView3 extends Polymer.Element {
+      static get is() { return 'my-view3'; }
+    }
+
+    window.customElements.define(MyView3.is, MyView3);
+  </script>
+</dom-module>

@@ -1,46 +1,39 @@
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/social-media-icons/social-media-icons.html" async>
 
 <dom-module id="spt-footer">
 
   <template>
     <style>
         :host {
-            background-color: var(--app-primary-color);
             width: 100%;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: inline-block;
+            text-align: center;
         }
 
         p {
-            margin: 0px;
+            margin-top: 15px;
         }
 
         a:link, a:visited, a:active, a:hover {
             text-decoration: none;
         }
 
-        social-media-icons {
-            padding: 5px;
-        }
     </style>
 
     <div>
       <p>
         <a href="https://www.youtube.com/channel/UCiHSfBKS99p1YBwSkaPJDKg">
-          <social-media-icons icon="youtube" color="#FFFFFF" size="30"></social-media-icons>
+          <img src="./images/socialmedia/youtube.svg" width="40"></img>
         </a>
         <a href="https://facebook.com/segunda.tech">
-          <social-media-icons icon="facebook" color="#FFFFFF" size="30"></social-media-icons>
+          <img src="./images/socialmedia/facebook.svg" width="40"></img>
         </a>
         <a href="https://twitter.com/segundatech">
-          <social-media-icons icon="twitter" color="#FFFFFF" size="30"></social-media-icons>
+          <img src="./images/socialmedia/twitter.svg" width="40"></img>
         </a>
         <a href="https://github.com/mfdavid">
-          <social-media-icons icon="github" color="#FFFFFF" size="30"></social-media-icons>
+          <img src="./images/socialmedia/github.svg" width="40"></img>
         </a>
       </p>
     </div>

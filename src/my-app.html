@@ -1,3 +1,4 @@
+
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
@@ -10,14 +11,17 @@
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../bower_components/social-links/twitter-link.html" async>
 <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" async>
-<link rel="import" href="my-icons.html" async>
+<link rel="import" href="my-icons.html">
+
+<link rel="lazy-import" href="my-view1.html">
+<link rel="lazy-import" href="my-view2.html">
+<link rel="lazy-import" href="my-view3.html">
+<link rel="lazy-import" href="my-view404.html">
 
 <dom-module id="my-app">
   <template>
     <style>
-      
       :host {
         --app-primary-color: #4285f4;
         --app-secondary-color: black;
@@ -50,15 +54,16 @@
         line-height: 40px;
       }
 
-      .drawer-list a:hover {
-        text-decoration: underline;
-      }
-
       .drawer-list a.iron-selected {
         color: black;
         font-weight: bold;
       }
 
+      .eightbit {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 75%;
+      }
+      
       #avatar {
         position: relative;
         left: 50%;
@@ -77,43 +82,35 @@
         font-style: italic;
         color: #808080;
       }
-
-      .eightbit {
-        font-family: 'Press Start 2P', cursive;
-        font-size: 75%;
-      }
-
+      
     </style>
 
     <app-location route="{{route}}"></app-location>
     <app-route
         route="{{route}}"
-        pattern="/:page"
+        pattern="[[rootPattern]]:page"
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
     <app-drawer-layout fullbleed>
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer">
-
+        
         <img src="images/avatar.jpg" id="avatar"/>
         
-        <div id="author">Marcio Frayze David</div>
+        <div id="author">Marcio Frayze</div>
 
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="/view1">Início</a>
-
-          <a name="view2" href="/view2">Sobre o Autor</a>
-
-          <!--a name="view3" href="/view3">View Three</a -->
-        </iron-selector>          
-  
-      </app-drawer>    
+          <a name="view1" href="view1">Início</a>
+          <a name="view2" href="view2">Sobre o autor</a>
+          <a name="view3" href="view3">Outros projetos</a>
+        </iron-selector>
+      </app-drawer>
 
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
 
-        <app-header slot="header" fixed condenses effects="waterfall">
+        <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
             <div main-title class="eightbit">segunda.tech</div>
@@ -121,17 +118,16 @@
         </app-header>
 
         <iron-pages
-          selected="[[page]]"
-          attr-for-selected="name"
-          fallback-selection="view404"
-          role="main">
+            selected="[[page]]"
+            attr-for-selected="name"
+            fallback-selection="view404"
+            role="main">
           <my-view1 name="view1"></my-view1>
           <my-view2 name="view2"></my-view2>
           <my-view3 name="view3"></my-view3>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
-
     </app-drawer-layout>
   </template>
 
@@ -147,6 +143,9 @@
             reflectToAttribute: true,
             observer: '_pageChanged',
           },
+          rootPattern: String,
+          routeData: Object,
+          subroute: String,
         };
       }
 
@@ -154,6 +153,14 @@
         return [
           '_routePageChanged(routeData.page)',
         ];
+      }
+
+      constructor() {
+        super();
+
+        // Get root pattern for app-route, for more info about `rootPath` see:
+        // https://www.polymer-project.org/2.0/docs/upgrade#urls-in-templates
+        this.rootPattern = (new URL(this.rootPath)).pathname;
       }
 
       _routePageChanged(page) {
