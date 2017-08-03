@@ -101,9 +101,9 @@
         <div id="author">Marcio Frayze</div>
 
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="view1">Início</a>
-          <a name="view2" href="view2">Sobre o autor</a>
-          <a name="view3" href="view3">Outros projetos</a>
+          <a name="view1" href="inicio">Início</a>
+          <a name="view2" href="autor">Sobre o autor</a>
+          <a name="view3" href="projetos">Outros projetos</a>
         </iron-selector>
       </app-drawer>
 
@@ -164,6 +164,9 @@
       }
 
       _routePageChanged(page) {
+
+        // Alias     
+        page = this._getPageForAlias(page);
         // Polymer 2.0 will call with `undefined` on initialization.
         // Ignore until we are properly called with a string.
         if (page === undefined) {
@@ -181,6 +184,7 @@
       }
 
       _pageChanged(page) {
+
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
         Polymer.importHref(
@@ -193,6 +197,27 @@
       _showPage404() {
         this.page = 'view404';
       }
+
+      // Criei esse método para permitir criar facilmente alias para os endereços das páginas
+      // sem precisar alterar/refatorar os nomes das views, etc.
+      _getPageForAlias(page) {
+        let alias = page;
+
+        if (page == 'inicio') {
+          alias = 'view1';
+        }
+
+        if (page == 'autor') {
+          alias = 'view2';
+        }
+
+        if (page == 'projetos') {
+          alias = 'view3';
+        }
+
+        return alias;
+      }
+
     }
 
     window.customElements.define(MyApp.is, MyApp);
