@@ -17,6 +17,7 @@
 <link rel="lazy-import" href="my-view1.html">
 <link rel="lazy-import" href="my-view2.html">
 <link rel="lazy-import" href="my-view3.html">
+<link rel="lazy-import" href="my-view4.html">
 <link rel="lazy-import" href="my-view404.html">
 
 <dom-module id="my-app">
@@ -102,6 +103,7 @@
 
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="view1" href="inicio">Início</a>
+          <a name="view4" href="blog">Blog</a>
           <a name="view2" href="autor">Sobre o autor</a>
           <a name="view3" href="projetos">Outros projetos</a>
         </iron-selector>
@@ -125,6 +127,7 @@
           <my-view1 name="view1"></my-view1>
           <my-view2 name="view2"></my-view2>
           <my-view3 name="view3"></my-view3>
+          <my-view4 name="view4"></my-view4>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
@@ -211,6 +214,12 @@
             case 'autor':
                 alias = 'view2';
                 break;
+            case 'projetos':
+                alias = 'view3';
+                break;
+            case 'blog':
+                alias = 'view4';
+                break;                                                
             default:
                 alias = page;
         }

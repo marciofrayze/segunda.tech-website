@@ -1,0 +1,64 @@
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="spt-footer.html">
+
+<dom-module id="my-view4">
+  <template>
+    <style include="shared-styles">
+      h2, h3 {
+        margin: 0px;
+      }
+
+      h3 {
+        font-size: 1em;
+        font-style: italic;
+        margin-left: 1em;
+      }
+    </style>
+
+    <div class="card">
+      <h1>Blog</h1>
+
+      <h2>Primeiro Post!</h2>
+
+      <h3>08 Agosto, 2017</h3>
+
+        <p>
+          É com muito prazer que apresento a vocês meu mais recente projeto: o <i><b>segunda.tech</b></i>.
+        </p>
+
+        <p>
+          Trata-se de um espaço onde falo sobre desenvolvimento de software e ciência da computação em geral de uma forma clara e simples.
+        </p>
+
+        <p>
+          Hoje lanço os 2 vídeos para o YouTube: um falando sobre Programação Orientada a Objetos e um apresentando a biblioteca JavaScript <i>Riot.js</i>.
+        </p>
+
+        <p>
+          O vídeo sobre orientação a objetos é o primeiro de uma série que pretendo gravar, aprensentando desde os conceitos fundamentais até temas mais avançados sobre este assunto tão vasto e interessante. Neste primeiro vídeo explico o que é um <b>paradigma de programação</b>.
+        </p>
+
+        <p>
+          Já no vídeo sobre o <i>Riot.js</i> apresento uma visão geral sobre esta biblioteca destacando os pontos que mais me chamaram atenção desta simples e elegante solução JavaScript para construção de interfaces web.
+        </p>
+
+        <p>
+          Então <a href="https://www.youtube.com/channel/UCiHSfBKS99p1YBwSkaPJDKg">acesse o canal <i>segunda.tech</i> no YouTube</a> para conferir os vídeos! :)
+        <p>
+        
+        <spt-footer></spt-footer>
+
+    </div>
+
+  </template>
+
+  <script>
+    class MyView4 extends Polymer.Element {
+      static get is() { return 'my-view4'; }
+    }
+
+    window.customElements.define(MyView4.is, MyView4);
+  </script>
+</dom-module>
