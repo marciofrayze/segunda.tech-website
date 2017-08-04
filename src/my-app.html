@@ -167,6 +167,7 @@
 
         // Alias     
         page = this._getPageForAlias(page);
+
         // Polymer 2.0 will call with `undefined` on initialization.
         // Ignore until we are properly called with a string.
         if (page === undefined) {
@@ -203,16 +204,15 @@
       _getPageForAlias(page) {
         let alias = page;
 
-        if (page == 'inicio') {
-          alias = 'view1';
-        }
-
-        if (page == 'autor') {
-          alias = 'view2';
-        }
-
-        if (page == 'projetos') {
-          alias = 'view3';
+        switch(page) {
+            case 'inicio':
+                alias = 'view1';
+                break;
+            case 'autor':
+                alias = 'view2';
+                break;
+            default:
+                alias = page;
         }
 
         return alias;
