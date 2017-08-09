@@ -3,10 +3,6 @@
     "public": "build/default",
     "rewrites": [
       {
-      	"source": "/blog",
-        "destination": "/blog"
-      },
-      {
         "source": "**",
         "destination": "/index.html"
       }

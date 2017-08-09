@@ -1,0 +1,92 @@
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../bower_components/paper-radio-group/paper-radio-group.html">
+
+<dom-module id="spt-exercise">
+
+  <template>
+    <style>
+        h1 {
+            font-size: 1.3em;
+        }
+
+        paper-button {
+            margin-left: 2em;
+        }
+
+        paper-button.indigo {
+            background-color: var(--paper-indigo-500);
+            color: white;
+            --paper-button-raised-keyboard-focus: {
+            background-color: var(--paper-pink-a200) !important;
+            color: white !important;
+            };
+        }
+        paper-button.indigo:hover {
+            background-color: var(--paper-indigo-400);
+        }       
+    </style>
+
+    <h1>
+        {{title}}
+    </h1>
+
+    <div>
+        <paper-radio-group>
+            <template is="dom-repeat" items="{{questions}}">            
+                <paper-radio-button name="question[[index]]"
+                                    checked="{{item.isSelected}}">[[item.text]]
+                </paper-radio-button>
+                <br />
+            </template>        
+        </paper-radio-group>
+    </div>
+
+    <paper-button raised 
+                  class="indigo"
+                  on-tap="_nextButtonPressed">Próxima</paper-button>
+
+  </template>
+
+  <script>
+    class SptExercise extends Polymer.Element {
+      
+        static get is() { return 'spt-exercise'; }
+
+        static get properties() {
+            return {
+              title: {
+                type: String
+              },
+              questions: {
+                type: Array
+              }
+            }
+        }
+
+        _nextButtonPressed() {
+            if (this._isCorrect()) {
+                alert("Correto! =)");
+            } else {
+                alert("Errado! =(");
+            }
+        }
+
+        _isCorrect() {
+            let isCorrect = true;
+            for(let index in this.questions) {
+                let question = this.questions[index];
+                if (question.isCorrect != question.isSelected) {
+                    isCorrect = false;
+                    break;
+                }
+            }
+
+            return isCorrect;
+        }
+    }
+    window.customElements.define(SptExercise.is, SptExercise);
+  </script>
+</dom-module>
