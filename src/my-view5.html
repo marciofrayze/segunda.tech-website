@@ -2,24 +2,54 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="spt-exercise.html">
+<link rel="import" href="spt-question.html">
+
 <link rel="import" href="spt-footer.html">
 
 <dom-module id="my-view5">
   <template>
     <style include="shared-styles">
+        paper-button {
+            margin-left: 2em;
+        }
+
+        paper-button.indigo {
+            background-color: var(--paper-indigo-500);
+            color: white;
+            --paper-button-raised-keyboard-focus: {
+            background-color: var(--paper-pink-a200) !important;
+            color: white !important;
+            };
+        }
+        paper-button.indigo:hover {
+            background-color: var(--paper-indigo-400);
+        }
+        paper-button.indigo[disabled] {
+          background-color: var(--paper-indigo-100);
+        }
     </style>
 
     <div class="card">
-      <h1>Exercício</h1>
+      <h1>Exercício [[currentQuestion]]</h1>
+
+      !isCurrentQuestion(1): [[!isCurrentQuestion(1)]]
 
       <spt-exercise
         title="Assinale a alternativa que completa corretamente a seguinte frase: Paradigmas de programação..."
-        questions='[{ "text": "são linguagens de programação.", "isCorrect": false, "isSelected": false},
-                    { "text": "são modelos de negócio.", "isCorrect": false, "isSelected": false },
-                    { "text": "não podem ser misturados uns com outros.", "isCorrect": false, "isSelected": false},
-                    { "text": "são formas ou modelos de como implementar softwares.", "isCorrect": true, "isSelected": false },
-                    { "text": "são códigos de programação.", "isCorrect": false, "isSelected": false }]'>
+        questions='[{ "text": "são linguagens de programação."},
+                    { "text": "são modelos de negócio." },
+                    { "text": "não podem ser misturados uns com outros."},
+                    { "text": "são formas ou modelos de como implementar softwares.", "isCorrect": true },
+                    { "text": "são códigos de programação." }]'
+        hidden$="[[!isCurrentQuestion(1)]]"
+        correct="{{isCorrect}}"
+        selected="{{isAsnwerSelected}}">
       </spt-exercise>
+
+      <paper-button raised 
+              class="indigo"
+              on-tap="_nextButtonPressed"
+              disabled$="{{!isAsnwerSelected}}">Próxima</paper-button>
 
       <spt-footer></spt-footer>
 
@@ -30,6 +60,30 @@
   <script>
     class MyView5 extends Polymer.Element {
       static get is() { return 'my-view5'; }
+
+      static get properties() {
+          return {
+            currentQuestion: {
+              type: Number,
+              value: 1
+            },
+            show: {
+              type: Boolean,
+              value: true         
+            }
+          }         
+        }
+
+        _nextButtonPressed() {
+          this.currentQuestion++;
+        }
+
+        isCurrentQuestion(questionNumber) {
+          let isCurrentQuestion = (this.currentQuestion == questionNumber);
+          console.log(isCurrentQuestion);
+          return isCurrentQuestion;
+        }
+
     }
 
     window.customElements.define(MyView5.is, MyView5);

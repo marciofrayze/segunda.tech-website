@@ -1,0 +1,39 @@
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-radio-button/paper-radio-button.html">
+
+<dom-module id="spt-question">
+
+  <template>
+    <style>
+    </style>
+
+    <paper-radio-button checked="{{isSelected}}">[[text]]
+    </paper-radio-button>
+    <br />
+
+  </template>
+
+  <script>
+    class SptQuestion extends Polymer.Element {
+      
+        static get is() { return 'spt-question'; }
+
+        static get properties() {
+            return {
+              text: {
+                type: String
+              },
+              isCorrect: {
+                type: Boolean
+              },
+              isSelected: {
+                type: Boolean
+              }
+            }
+        }
+
+    }
+    window.customElements.define(SptQuestion.is, SptQuestion);
+  </script>
+</dom-module>

@@ -12,21 +12,6 @@
             font-size: 1.3em;
         }
 
-        paper-button {
-            margin-left: 2em;
-        }
-
-        paper-button.indigo {
-            background-color: var(--paper-indigo-500);
-            color: white;
-            --paper-button-raised-keyboard-focus: {
-            background-color: var(--paper-pink-a200) !important;
-            color: white !important;
-            };
-        }
-        paper-button.indigo:hover {
-            background-color: var(--paper-indigo-400);
-        }       
     </style>
 
     <h1>
@@ -44,10 +29,6 @@
         </paper-radio-group>
     </div>
 
-    <paper-button raised 
-                  class="indigo"
-                  on-tap="_nextButtonPressed">Próxima</paper-button>
-
   </template>
 
   <script>
@@ -62,23 +43,27 @@
               },
               questions: {
                 type: Array
+              },
+              correct: {
+                type: Boolean,
+                computed: 'computeIsCorrect(questions.*)',
+                notify: true
+              },
+              selected: {
+                  type: Boolean,
+                  computed: 'computeIsSelected(questions.*)',
+                  notify: true
               }
             }
         }
-
-        _nextButtonPressed() {
-            if (this._isCorrect()) {
-                alert("Correto! =)");
-            } else {
-                alert("Errado! =(");
-            }
-        }
-
-        _isCorrect() {
+          
+        computeIsCorrect(questions) {
+            // TODO: entender melhor o parametro passado pelo polymer em computed properties
+            let base = questions.base;
             let isCorrect = true;
-            for(let index in this.questions) {
-                let question = this.questions[index];
-                if (question.isCorrect != question.isSelected) {
+            for(var i = 0, len = base.length; i < len; ++i) {
+                let question = base[i];     
+                if ( question.isCorrect != undefined && (question.isSelected != question.isCorrect)) { 
                     isCorrect = false;
                     break;
                 }
@@ -86,6 +71,22 @@
 
             return isCorrect;
         }
+
+        computeIsSelected(questions) {
+            // TODO: entender melhor o parametro passado pelo polymer em computed properties
+            let base = questions.base;
+            let isSelected = false;
+            for(var i = 0, len = base.length; i < len; ++i) {
+                let question = base[i];
+                if (question.isSelected) { 
+                    isSelected = true;
+                    break;
+                }
+            }
+
+            return isSelected;
+        }
+
     }
     window.customElements.define(SptExercise.is, SptExercise);
   </script>
