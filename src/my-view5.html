@@ -30,26 +30,25 @@
     </style>
 
     <div class="card">
-      <h1>Exercício [[currentQuestion]]</h1>
+      <h1>Exercício [[currentQuestionNumber]]</h1>
 
-      !isCurrentQuestion(1): [[!isCurrentQuestion(1)]]
+      enabled: {{_isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected)}}<br />
+      isAsnwerSelected: {{isAsnwerSelected}}<br />
+      this.currentQuestionNumber: {{currentQuestionNumber}} <br />
+      this.questions.length: {{questions.length}}<br />
+      _isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected): {{_isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected)}}
 
       <spt-exercise
-        title="Assinale a alternativa que completa corretamente a seguinte frase: Paradigmas de programação..."
-        questions='[{ "text": "são linguagens de programação."},
-                    { "text": "são modelos de negócio." },
-                    { "text": "não podem ser misturados uns com outros."},
-                    { "text": "são formas ou modelos de como implementar softwares.", "isCorrect": true },
-                    { "text": "são códigos de programação." }]'
-        hidden$="[[!isCurrentQuestion(1)]]"
+        title="Colocar Titulo da questao aqui"
+        questions="{{_currentQuestion(currentQuestionNumber)}}"
         correct="{{isCorrect}}"
         selected="{{isAsnwerSelected}}">
       </spt-exercise>
 
       <paper-button raised 
-              class="indigo"
-              on-tap="_nextButtonPressed"
-              disabled$="{{!isAsnwerSelected}}">Próxima</paper-button>
+                    class="indigo"
+                    on-tap="_nextButtonPressed"
+                    disabled$="{{!_isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected)}}">Próxima</paper-button>
 
       <spt-footer></spt-footer>
 
@@ -63,26 +62,59 @@
 
       static get properties() {
           return {
-            currentQuestion: {
+            currentQuestionNumber: {
               type: Number,
-              value: 1
+              value: 1,
+              observer: '_isNextQuestionEnabled'
+            },
+            isAsnwerSelected: {
+              type: Boolean
             },
             show: {
               type: Boolean,
               value: true         
+            },
+            questions: {
+              // Assinale a alternativa que completa corretamente a seguinte frase: Paradigmas de programação...
+              type: Array,
+              value: [ [{ "text": "são linguagens de programação."},
+                        { "text": "são modelos de negócio." },
+                        { "text": "não podem ser misturados uns com outros."},
+                        { "text": "são formas ou modelos de como implementar softwares.", "isCorrect": true },
+                        { "text": "são códigos de programação." }],
+
+                       [{ "text": "resposta de outra questao1."},
+                        { "text": "resposta de outra questao2." },
+                        { "text": "resposta de outra questao3."},
+                        { "text": "resposta de outra questao4.", "isCorrect": true },
+                        { "text": "resposta de outra questao5." }],                        
+                       ]
             }
           }         
         }
 
-        _nextButtonPressed() {
-          this.currentQuestion++;
-        }
+      static get observers() {
+        return ['_currentQuestion()', '_isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected)']
+      }
 
-        isCurrentQuestion(questionNumber) {
-          let isCurrentQuestion = (this.currentQuestion == questionNumber);
-          console.log(isCurrentQuestion);
-          return isCurrentQuestion;
-        }
+      _nextButtonPressed() {
+        this.currentQuestionNumber++;
+      }
+
+      _isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected) {
+        
+        console.log("_isNextQuestionEnabled");
+        console.log("isAsnwerSelected: " + isAsnwerSelected);
+
+        return ( (isAsnwerSelected == true) && 
+                 (currentQuestionNumber < this.questions.length) );
+      }
+
+      _currentQuestion(currentQuestionNumber) {
+        console.log("_currentQuestion. this.currentQuestionNumber = ", currentQuestionNumber)
+        console.log("this.questions[this.currentQuestionNumber - 1] = ", this.questions[currentQuestionNumber - 1])
+        return this.questions[currentQuestionNumber - 1];
+      }
 
     }
 
