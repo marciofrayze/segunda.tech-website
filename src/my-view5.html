@@ -10,19 +10,19 @@
   <template>
     <style include="shared-styles">
         paper-button {
-            margin-left: 2em;
+          margin-left: 1em;
         }
 
         paper-button.indigo {
-            background-color: var(--paper-indigo-500);
-            color: white;
-            --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-indigo-500);
+          color: white;
+          --paper-button-raised-keyboard-focus: {
             background-color: var(--paper-pink-a200) !important;
             color: white !important;
-            };
+          };
         }
         paper-button.indigo:hover {
-            background-color: var(--paper-indigo-400);
+          background-color: var(--paper-indigo-400);
         }
         paper-button.indigo[disabled] {
           background-color: var(--paper-indigo-100);
@@ -32,23 +32,50 @@
     <div class="card">
       <h1>Exercício [[currentQuestionNumber]]</h1>
 
-      enabled: {{_isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected)}}<br />
-      isAsnwerSelected: {{isAsnwerSelected}}<br />
-      this.currentQuestionNumber: {{currentQuestionNumber}} <br />
-      this.questions.length: {{questions.length}}<br />
-      _isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected): {{_isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected)}}
+      _isCurrentQuestionNumber(0): {{_isCurrentQuestionNumber(0)}}
 
+      <!--
       <spt-exercise
-        title="Colocar Titulo da questao aqui"
-        questions="{{_currentQuestion(currentQuestionNumber)}}"
+        title="{{_currentTitle(currentQuestionNumber)}}"
+        questions="{{_currentAnswers(currentQuestionNumber)}}"
         correct="{{isCorrect}}"
         selected="{{isAsnwerSelected}}">
       </spt-exercise>
+      -->
 
-      <paper-button raised 
-                    class="indigo"
-                    on-tap="_nextButtonPressed"
-                    disabled$="{{!_isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected)}}">Próxima</paper-button>
+      <!--
+      <template is="dom-repeat" items="[[questions]]">
+        <spt-exercise
+          title="[[item.title]]"
+          questions="[[item.answers]]"
+          hidden$={{!_isCurrentQuestionNumber(index)}}
+          selected="[[item.isAnswerSelect]]">
+        </spt-exercise>
+      </template>
+      -->
+
+      {{questions}}
+      
+      <spt-exercise
+        title="[[questions[0].title]]"
+        questions="[[item.answers]]"
+        hidden$={{!_isCurrentQuestionNumber(index)}}
+        selected="[[item.isAnswerSelect]]">
+      </spt-exercise>
+
+      <div id="buttons">
+        <paper-button raised 
+                      class="indigo"
+                      on-tap="_nextButtonPressed">
+                      <!-- disabled$="{{!_isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected)}}" -->
+                      Próxima</paper-button>
+
+        <paper-button raised 
+                      class="indigo"
+                      on-tap="_endPressed"
+                      disabled$="{{!_isViewResultsEnabled(currentQuestionNumber, isAsnwerSelected)}}">
+                      Ver resultado!</paper-button>
+      </div>
 
       <spt-footer></spt-footer>
 
@@ -70,31 +97,54 @@
             isAsnwerSelected: {
               type: Boolean
             },
+            numberOfCorrectAnswers: {
+              type: Number,
+              value: 0         
+            },            
             show: {
               type: Boolean,
               value: true         
             },
             questions: {
-              // Assinale a alternativa que completa corretamente a seguinte frase: Paradigmas de programação...
               type: Array,
-              value: [ [{ "text": "são linguagens de programação."},
-                        { "text": "são modelos de negócio." },
-                        { "text": "não podem ser misturados uns com outros."},
-                        { "text": "são formas ou modelos de como implementar softwares.", "isCorrect": true },
-                        { "text": "são códigos de programação." }],
+              value: [
 
-                       [{ "text": "resposta de outra questao1."},
-                        { "text": "resposta de outra questao2." },
-                        { "text": "resposta de outra questao3."},
-                        { "text": "resposta de outra questao4.", "isCorrect": true },
-                        { "text": "resposta de outra questao5." }],                        
-                       ]
+                      { 
+                        "title": "Assinale a alternativa que completa corretamente a seguinte frase: Paradigmas de programação...",
+                        
+                        "answers": [
+                          { "text": "são linguagens de programação."},
+                          { "text": "são modelos de negócio." },
+                          { "text": "não podem ser misturados uns com outros."},
+                          { "text": "são formas ou modelos de como implementar softwares.", "isCorrect": true },
+                          { "text": "são códigos de programação." }
+                        ],
+
+                        "isAnswerSelect": false
+                      },
+                        
+
+                      { 
+                        "title": "Segunda pergunta",
+                        
+                        "answers": [
+                          { "text": "bla bla."},
+                          { "text": "bla bla." },
+                          { "text": "bla bla."},
+                          { "text": "bla bla.", "isCorrect": true },
+                          { "text": "bla bla." }
+                        ],
+
+                        "isAnswerSelect": false
+                      },
+
+                    ]
             }
           }         
         }
 
       static get observers() {
-        return ['_currentQuestion()', '_isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected)']
+        return ['_currentQuestion()', '_isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected)', '_isCurrentQuestionNumber(index)']
       }
 
       _nextButtonPressed() {
@@ -102,18 +152,29 @@
       }
 
       _isNextQuestionEnabled(currentQuestionNumber, isAsnwerSelected) {
-        
-        console.log("_isNextQuestionEnabled");
-        console.log("isAsnwerSelected: " + isAsnwerSelected);
-
         return ( (isAsnwerSelected == true) && 
                  (currentQuestionNumber < this.questions.length) );
       }
 
-      _currentQuestion(currentQuestionNumber) {
-        console.log("_currentQuestion. this.currentQuestionNumber = ", currentQuestionNumber)
-        console.log("this.questions[this.currentQuestionNumber - 1] = ", this.questions[currentQuestionNumber - 1])
+      _isViewResultsEnabled(currentQuestionNumber, isAsnwerSelected) {
+        return ( (isAsnwerSelected == true) && 
+                 (currentQuestionNumber == this.questions.length) );        
+      }
+
+      _currentQuestion(currentQuestionNumber) {       
         return this.questions[currentQuestionNumber - 1];
+      }
+
+      _currentTitle(currentQuestionNumber) {
+        return this.questions[currentQuestionNumber - 1].title;
+      }
+
+      _currentAnswers(currentQuestionNumber) {
+        return this.questions[currentQuestionNumber - 1].answers;
+      }
+
+      _isCurrentQuestionNumber(index) {
+        return this.currentQuestionNumber == index + 1;
       }
 
     }
