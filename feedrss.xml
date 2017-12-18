@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
-
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
   <title>segunda.tech</title>
   <link>https://segunda.tech</link>
   <description>Vídeos e artigos explicando de forma simples e clara os conceitos mais importantes da área de desenvolvimento de software e ciência da computação em geral.</description>
+  <atom:link href="https://segunda.tech/feedrss.xml" rel="self" type="application/rss+xml" /> 
   <item>
-    <title>Primeiro Post!</title>
-    <link>https://segunda.tech/blog</link>
+    <title>História da Programação Orientada a Objetos</title>
+    <link>https://www.youtube.com/watch?v=UjpTvgau7mU</link>
     <description>
         Publiquei hoje o terceiro vídeo do canal! Desta vez apresento um pouquinho da história da Programação Orientada a Objetos. 
         Embora o público alvo principal sejam programadores mais iniciantes,  abordo também neste vídeo algumas curiosidades que muita gente mais experiênte não conhece. 
         Você já ouviu falar na linguagem Smalltalk? Conhece o Alan Kay? E o Visual J++? Não?! Então acesse o vídeo lá no canal pra conhecer um pouco mais sobre a história deste paradigma de programação!
     </description>
-    <pubDate>Mon, 12 Dez 2017 06:00:00 GMT</pubDate>
+    <pubDate>Mon, 18 Dec 2017 06:00:00 GMT</pubDate>
+    <guid>https://www.youtube.com/watch?v=UjpTvgau7mU</guid>    
   </item>
   <item>
     <title>Primeiro Post!</title>
-    <link>https://segunda.tech/blog</link>
+    <link>https://www.youtube.com/channel/UCiHSfBKS99p1YBwSkaPJDKg</link>
     <description>
         É com muito prazer que apresento a vocês meu mais recente projeto: o segunda.tech.
         Trata-se de um espaço onde falo sobre desenvolvimento de software e ciência da computação em geral de uma forma clara e simples.
         Hoje lanço 2 vídeos no YouTube: um falando sobre Programação Orientada a Objetos e outro apresentando o conceito de Single Page Application.
-        O vídeo sobre orientação a objetos é o primeiro de uma série que pretendo gravar, aprensentando desde os conceitos fundamentais até temas mais avançados sobre este assunto tão vasto e interessante. Neste primeiro vídeo explico o que é um <b>paradigma de programação</b>.
+        O vídeo sobre orientação a objetos é o primeiro de uma série que pretendo gravar, aprensentando desde os conceitos fundamentais até temas mais avançados sobre este assunto tão vasto e interessante. Neste primeiro vídeo explico o que é um paradigma de programação.
         Já no vídeo sobre Single Page Applications apresento uma introdução conceitual  deste modelo de desenvolvimento de sites, destacando suas vantagens e desvantagens.
         Acesse o canal segunda.tech no YouTube para conferir os vídeos! :)
     </description>
-    <pubDate>Mon, 11 Dez 2017 06:00:00 GMT</pubDate>
+    <pubDate>Mon, 11 Dec 2017 06:00:00 GMT</pubDate>
+    <guid>https://www.youtube.com/channel/UCiHSfBKS99p1YBwSkaPJDKg</guid>
   </item>
 </channel>
 
