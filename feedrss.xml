@@ -6,6 +6,17 @@
   <description>Vídeos e artigos explicando de forma simples e clara os conceitos mais importantes da área de desenvolvimento de software e ciência da computação em geral.</description>
   <atom:link href="https://segunda.tech/feedrss.xml" rel="self" type="application/rss+xml" /> 
   <item>
+    <title>Conceitos básicos da Programação Orientada a Objetos</title>
+    <link>https://www.youtube.com/watch?v=CXifkOJJQus</link>
+    <description>
+          Primeiro vídeo de 2018!
+          Dando continuidade à série de vídeos sobre Programação Orientada a Objetos, neste terceiro episódio falo um pouco mais sobre os motivos que levaram a criação deste paradigma e apresento também alguns fundamentos deste tema.
+          Então, acesse vídeo lá no canal para conferir o primeiro vídeo do ano!
+    </description>
+    <pubDate>Mon, 08 Jan 2018 06:00:00 GMT</pubDate>
+    <guid>https://www.youtube.com/watch?v=CXifkOJJQus</guid>    
+  </item>
+  <item>
     <title>História da Programação Orientada a Objetos</title>
     <link>https://www.youtube.com/watch?v=UjpTvgau7mU</link>
     <description>
